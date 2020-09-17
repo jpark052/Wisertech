@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Websocket Practice</title>
+<title>Websocket server</title>
 </head>
 
 <body>
@@ -8,6 +8,8 @@
     <textarea id="message"></textarea>
     <button onClick="fire()">Send</button>
     <div id='messages'></div>
+    <img id="mydog" src="http://cdn.akc.org/content/article-body-image/keeshond_dog_pictures.jpg" />
+
 
     <script>
         const getElement = (id) => document.getElementById(id);
@@ -23,13 +25,19 @@
         };
 
         ws.onmessage = (event) => {
-            const messages = JSON.parse(event.data);
-            messages.forEach(addMessage);
+            // const messages = JSON.parse(event.data);
+            // messages.forEach(addMessage);
+            //console.log(event.data)
+            // const url = atob(message)
+            // document.getElementById("mydog").src = url;
+            document.getElementById("mydog").src= `data:image/png;base64, ${event.data}`
         };
         const fire = () => {
-            const username = getElement('name').value || '???'
-            ws.send(`${username}: ${getElement('message').value}`);
-            getElement('message').value = '';
+            // const username = getElement('name').value || '???'
+            // ws.send(`${username}: ${getElement('message').value}`);
+            // getElement('message').value = '';
+            ws.send('something');
+            //document.getElementById("mydog").src="http://cdn.akc.org/content/article-body-image/keeshond_dog_pictures.jpg";
         };
 
     </script>

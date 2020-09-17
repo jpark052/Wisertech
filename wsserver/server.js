@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const imageToBase64 = require('image-to-base64');
 const WebSocket = require('ws');
 const port = 8765;
 var server = app.listen(port, "10.0.0.223");
+var base64
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -23,12 +25,16 @@ socketServer.on('connection', (socketClient) => {
   socketClient.send(JSON.stringify(messages));
 
   socketClient.on('message', (message) => {
-    messages.push(message);
-    socketServer.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify([message]));
-      }
-    });
+    // messages.push(message);
+    // socketServer.clients.forEach((client) => {
+    //   if (client.readyState === WebSocket.OPEN) {
+    //     client.send(JSON.stringify([message]));
+    //   }
+    // });
+    socketClient.send(base64)
+    console.log("we got something!")
+    console.log(message)
+    
   });
 
   socketClient.on('close', (socketClient) => {
@@ -37,46 +43,16 @@ socketServer.on('connection', (socketClient) => {
   });
 });
 
-
-// import Express from 'express';
-// import http from 'http';
-// import WebSocket from 'ws';
-
-// const app = Express();
-
-// //initialize a simple http server
-// const server = http.createServer(app);
-
-// //initialize the WebSocket server instance
-// const wss = new WebSocket.Server({ server });
-
-// wss.on('connection', (ws) => {
-
-//     //connection is up, let's add a simple simple event
-//     ws.on('message', (message) => {
-
-//         //log the received message and send it back to the client
-//         console.log('received: %s', message);
-//         ws.send(`Hello, you sent -> ${message}`);
-//     });
-
-//     //send immediatly a feedback to the incoming connection    
-//     ws.send('Hi there, I am a WebSocket server');
-// });
-
-// //start our server
-// server.listen(process.env.PORT || 8999, () => {
-//     console.log(`Server started on port ${server.address().port} :)`);
-// });
-
-// import Server from 'ws';
-
-// const wss = new Server({ port: 8080 });
-
-// wss.on('connection', function connection(ws) {
-//   ws.on('message', function incoming(message) {
-//     console.log('received: %s', message);
-//   });
-
-//   ws.send('something');
-// });
+imageToBase64("./cutedog.jpeg") // Path to the image
+    .then(
+        (response) => {
+            //console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
+            base64 = response
+            //console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
+        }
+    )
+    .catch(
+        (error) => {
+            console.log(error); // Logs an error if there was one
+        }
+    )
