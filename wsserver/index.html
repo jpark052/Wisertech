@@ -4,20 +4,20 @@
 </head>
 
 <body>
-    <input id="name" />
-    <textarea id="message"></textarea>
-    <button onClick="fire()">Send</button>
+    <!--<input id="name" />-->
+    <!--<textarea id="message"></textarea>-->
+    <button onClick="getPics()">Get Pictures</button>
     <div id='messages'></div>
     <img id="mydog" src="" />
 
 
     <script>
         const getElement = (id) => document.getElementById(id);
-        const addMessage = (message) => {
+        /*const addMessage = (message) => {
             const pTag = document.createElement('p');
             pTag.appendChild(document.createTextNode(message));
             getElement('messages').appendChild(pTag);
-        };
+        };*/
 
         const ws = new WebSocket('ws://localhost:3030');
         ws.onopen = () => {
@@ -32,7 +32,7 @@
             // document.getElementById("mydog").src = url;
             document.getElementById("mydog").src= `data:image/png;base64, ${event.data}`
         };
-        const fire = () => {
+        const getPics = () => {
             // const username = getElement('name').value || '???'
             // ws.send(`${username}: ${getElement('message').value}`);
             // getElement('message').value = '';

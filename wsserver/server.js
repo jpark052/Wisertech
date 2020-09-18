@@ -7,7 +7,7 @@ const fs = require("fs");
 const { StillCamera } = require("pi-camera-connect");
 const stillCamera = new StillCamera();
 const port = 8765;
-var server = app.listen(port, "127.0.0.1");
+var server = app.listen(port, "127.0.0.1"); // probably not the right ip :(
 var base64
 
 app.get('/', (req, res) => {
@@ -41,13 +41,10 @@ socketServer.on('connection', (socketClient) => {
             console.log(error); // Logs an error if there was one
         })
         
-        
         socketClient.send(base64)
 		})
 }
     setInterval(takes, 5000);
-    
-   // socketClient.send(base64)
     
   });
 
