@@ -4,14 +4,14 @@ const app = express();
 const imageToBase64 = require('image-to-base64');
 const WebSocket = require('ws');
 const port = 8765;
-var server = app.listen(port, "10.0.0.223");
+//var server = app.listen(port, "10.0.0.223");
 var base64
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`listening http://localhost:${port}`);
 });
 
