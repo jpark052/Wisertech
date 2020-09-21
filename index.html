@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Websocket server</title>
+
+<head>
+    <title>Websocket client page</title>
 </head>
 
 <body>
     <button onClick="getPics()">Get Pictures</button>
     <div id='messages'></div>
     <img id="pic" src="" />
-
 
     <script>
         const getElement = (id) => document.getElementById(id);
@@ -27,11 +28,8 @@
          */
         const getPics = () => {
             ws.send('trigger');
-
         };
-
     </script>
-
 </body>
 
 </html>
