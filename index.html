@@ -6,22 +6,28 @@
 <body>
     <button onClick="getPics()">Get Pictures</button>
     <div id='messages'></div>
-    <img id="mydog" src="" />
+    <img id="pic" src="" />
 
 
     <script>
         const getElement = (id) => document.getElementById(id);
         const ws = new WebSocket('ws://10.0.0.223:3030');
+
         ws.onopen = () => {
             console.log('Now connected');
         };
 
         ws.onmessage = (event) => {
-            document.getElementById("mydog").src= `data:image/png;base64, ${event.data}`
+            document.getElementById("pic").src = `data:image/png;base64, ${event.data}`
         };
+
+        /**
+         * function getPics is triggered when user click the button.
+         * the message string 'trigger' itself doesn't do anything
+         */
         const getPics = () => {
             ws.send('trigger');
-           
+
         };
 
     </script>
