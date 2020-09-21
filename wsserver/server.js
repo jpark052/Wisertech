@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const imageToBase64 = require('image-to-base64');
 const WebSocket = require('ws');
+const fs = require("fs");
+const { StillCamera } = require("pi-camera-connect");
+const stillCamera = new StillCamera();
 const port = 8765;
 //var server = app.listen(port, "10.0.0.223");
 var base64
@@ -25,15 +28,23 @@ socketServer.on('connection', (socketClient) => {
   socketClient.send(JSON.stringify(messages));
 
   socketClient.on('message', (message) => {
-    // messages.push(message);
-    // socketServer.clients.forEach((client) => {
-    //   if (client.readyState === WebSocket.OPEN) {
-    //     client.send(JSON.stringify([message]));
-    //   }
-    // });
-    socketClient.send(base64)
-    console.log("we got something!")
-    console.log(message)
+    
+    function takes() {
+	stillCamera.takeImage().then(image => {
+		fs.writeFileSync(`/home/pi/pics/testing.jpg`, image);
+        
+        imageToBase64("/home/pi/pics/testing.jpg") // Path to the image
+    .then((response) => {
+            base64 = response
+        })
+    .catch((error) => {
+            console.log(error); // Logs an error if there was one
+        })
+        
+        socketClient.send(base64)
+		})
+}
+    setInterval(takes, 5000);
     
   });
 
@@ -44,15 +55,11 @@ socketServer.on('connection', (socketClient) => {
 });
 
 imageToBase64("./cutedog.jpeg") // Path to the image
-    .then(
-        (response) => {
-            //console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
+    .then((response) => {
             base64 = response
-            //console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
-        }
-    )
-    .catch(
-        (error) => {
+        })
+    .catch((error) => {
             console.log(error); // Logs an error if there was one
-        }
-    )
+        })
+        
+
