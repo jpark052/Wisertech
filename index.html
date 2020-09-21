@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Websocket server</title>
+</head>
+
+<body>
+    <button onClick="getPics()">Get Pictures</button>
+    <div id='messages'></div>
+    <img id="mydog" src="" />
+
+
+    <script>
+        const getElement = (id) => document.getElementById(id);
+        const ws = new WebSocket('ws://10.0.0.223:3030');
+        ws.onopen = () => {
+            console.log('Now connected');
+        };
+
+        ws.onmessage = (event) => {
+            document.getElementById("mydog").src= `data:image/png;base64, ${event.data}`
+        };
+        const getPics = () => {
+            ws.send('trigger');
+           
+        };
+
+    </script>
+
+</body>
+
+</html>
