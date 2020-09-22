@@ -7,9 +7,14 @@ const WebSocket = require('ws');
 const fs = require("fs");
 
 const { StillCamera } = require("pi-camera-connect");
-const stillCamera = new StillCamera();
+const stillCamera = new StillCamera({
+  width: '640',
+  height: '480'
+  });
 const port = 8765;
-var base64;
+let base64; // base64 format image string
+let interval; // store 'serInterval' when user click 'Get Picture' button
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -25,16 +30,15 @@ socketServer.on('connection', (ws) => {
   console.log('client Set length: ', socketServer.clients.size);
 
   ws.on('message', (message) => {
-
-    /* 
+    /** 
      * function takes() is triggered when server receives a message from the client
      * i. e. when user press the button
      * It takes the picture, saves it in the folder 'pics', format it in base64 string and send it to client 
-   */
+     */
     function takes() {
       stillCamera.takeImage().then(image => {
+        // Taken image is stored in a folder then converted into base64 string
         fs.writeFileSync(`/home/pi/pics/testing.jpg`, image);
-        
         imageToBase64("/home/pi/pics/testing.jpg") // Path to the image
           .then((response) => {
             base64 = response
@@ -45,10 +49,11 @@ socketServer.on('connection', (ws) => {
         ws.send(base64)
       })
     }
-    setInterval(takes, 5000);
+    interval = setInterval(takes, 5000);
   });
 
   ws.on('close', (socketClient) => {
+    clearInterval(interval);
     console.log('closed');
     console.log('Number of clients: ', socketServer.clients.size);
   });

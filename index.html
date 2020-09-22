@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>Websocket client page</title>
+    <title>Websocket Client Page</title>
 </head>
 
 <body>
     <button onClick="getPics()">Get Pictures</button>
+    <button onClick="stop()">Stop</button>
     <div id='messages'></div>
     <img id="pic" src="" />
 
@@ -29,6 +30,10 @@
         const getPics = () => {
             ws.send('trigger');
         };
+        
+        const stop = () => {
+            ws.close();
+            }
     </script>
 </body>
 
