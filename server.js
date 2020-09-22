@@ -9,7 +9,7 @@ const fs = require("fs");
 const { StillCamera } = require("pi-camera-connect");
 const stillCamera = new StillCamera();
 const port = 8765;
-
+var base64;
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -35,7 +35,6 @@ socketServer.on('connection', (ws) => {
       stillCamera.takeImage().then(image => {
         fs.writeFileSync(`/home/pi/pics/testing.jpg`, image);
         
-        let base64
         imageToBase64("/home/pi/pics/testing.jpg") // Path to the image
           .then((response) => {
             base64 = response
