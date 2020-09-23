@@ -1,60 +1,55 @@
-"use strict";
-const express = require('express');
+"use strict"
+const express = require('express')
 const path = require('path');
-const app = express();
-const imageToBase64 = require('image-to-base64');
-const WebSocket = require('ws');
-const fs = require("fs");
+const imageToBase64 = require('image-to-base64')
+const WebSocket = require('ws')
+const fs = require("fs")
 
-const { StillCamera } = require("pi-camera-connect");
+const app = express();
+const { StillCamera } = require("pi-camera-connect")
 const stillCamera = new StillCamera({
   width: '640',
   height: '480'
-  });
-const port = 8765;
-let base64; // base64 format image string
-let interval; // store 'serInterval' when user click 'Get Picture' button
+  })
+const port = 8765
+let base64 // base64 format image string
+let interval // store 'serInterval' when user click 'Get Picture' button
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+  res.sendFile(path.join(__dirname, 'index.html'))
+})
 
 app.listen(port, () => {
-  console.log(`Server is listening at port: ${port}`);
-});
+  console.log(`Server is listening at port: ${port}`)
+})
 
-const socketServer = new WebSocket.Server({ port: 3030 });
+const socketServer = new WebSocket.Server({ port: 3030 })
 
 socketServer.on('connection', (ws) => {
-  console.log('connected');
-  console.log('client Set length: ', socketServer.clients.size);
+  console.log('connected')
+  console.log('client Set length: ', socketServer.clients.size)
 
   ws.on('message', (message) => {
     /** 
      * function takes() is triggered when server receives a message from the client
      * i. e. when user press the button
-     * It takes the picture, saves it in the folder 'pics', format it in base64 string and send it to client 
-     */
+     * It takes the picture(hex buffer), convert it to base64 string and send it to client 
+     */     
     function takes() {
       stillCamera.takeImage().then(image => {
-        // Taken image is stored in a folder then converted into base64 string
-        fs.writeFileSync(`/home/pi/pics/testing.jpg`, image);
-        imageToBase64("/home/pi/pics/testing.jpg") // Path to the image
-          .then((response) => {
-            base64 = response
-          })
-          .catch((error) => {
-            console.log(error); // Logs an error if there was one
-          })
-        ws.send(base64)
-      })
-    }
-    interval = setInterval(takes, 5000);
-  });
+      let buff = Buffer.from(image)
+      let base64 = buff.toString('base64')
+      ws.send(base64)
+		})
+}
+    takes()
+    interval = setInterval(takes, 5000)
+  })
 
   ws.on('close', (socketClient) => {
-    clearInterval(interval);
-    console.log('closed');
-    console.log('Number of clients: ', socketServer.clients.size);
-  });
-});
+    clearInterval(interval)
+    console.log('closed')
+    console.log('Number of clients: ', socketServer.clients.size)
+  })
+})
+
