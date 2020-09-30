@@ -10,6 +10,7 @@
     <button onClick="stop()">Stop</button>
     <div id='messages'></div>
     <img id="pic" src="" />
+    <img id="streamImage" class="xform" src="" />
 
     <script>
         const getElement = (id) => document.getElementById(id)
@@ -20,8 +21,8 @@
         }
 
         ws.onmessage = (event) => {
-            console.log(event)
-            document.getElementById("pic").src = `data:image/png;base64, ${event.data}`
+            //console.log('we got a message')
+            document.getElementById("streamImage").src = "http://10.0.0.223:8080/?action=stream"
         }
 
         /**
@@ -30,7 +31,7 @@
          */
         const getPics = () => {
             ws.send('trigger')
-        }
+            }
         
         const stop = () => {
             ws.close()

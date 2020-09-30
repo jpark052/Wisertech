@@ -1,19 +1,11 @@
 "use strict"
 const express = require('express')
 const path = require('path');
-const imageToBase64 = require('image-to-base64')
 const WebSocket = require('ws')
 const fs = require("fs")
-
 const app = express();
-const { StillCamera } = require("pi-camera-connect")
-const stillCamera = new StillCamera({
-  width: '640',
-  height: '480'
-  })
+const cmd = require("node-cmd")
 const port = 8765
-let base64 // base64 format image string
-let interval // store 'serInterval' when user click 'Get Picture' button
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
@@ -28,22 +20,21 @@ const socketServer = new WebSocket.Server({ port: 3030 })
 socketServer.on('connection', (ws) => {
   console.log('connected')
   console.log('client Set length: ', socketServer.clients.size)
-
+  
   ws.on('message', (message) => {
-    /** 
-     * function takes() is triggered when server receives a message from the client
-     * i. e. when user press the button
-     * It takes the picture(hex buffer), convert it to base64 string and send it to client 
-     */     
-    function takes() {
-      stillCamera.takeImage().then(image => {
-      let buff = Buffer.from(image)
-      let base64 = buff.toString('base64')
-      ws.send(base64)
-		})
-}
-    takes()
-    interval = setInterval(takes, 5000)
+    console.log('we have received a request')
+    
+    // executing the mjpg_streamer
+    cmd.get(`cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental
+             export LD_LIBRARY_PATH=.
+             mjpg_streamer -i "./input_uvc.so -n -f 30 -r 640x480 -d /dev/video0"  -o "./output_http.so -w ./www"`,
+        function(err, data, stderr){
+               if (err) {
+               console.log('error: ', err)
+            }
+             
+        });
+    ws.send('streaming started')
   })
 
   ws.on('close', (socketClient) => {
