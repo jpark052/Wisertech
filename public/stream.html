@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Stream Page</title>
+</head>
+
+<body>
+	
+	<h3>streaming page</h3>
+	<button onClick="stop()">Stop</button>
+	<a href="index.html">Go to main page</a>
+	<img id="streamImage" class="xform" src="" />
+	<script>
+	const ws = new WebSocket('ws://10.0.0.223:3030')
+		
+        ws.onopen = () => {
+            console.log('Now connected')
+	    ws.send('trigger')
+	    document.getElementById("streamImage").src = "http://10.0.0.223:8080/?action=stream"
+        }
+        
+        ws.onclose = () => {
+	   console.log('connection closed')
+		}
+
+	</script>
+	
+</body>
+
+</html>
