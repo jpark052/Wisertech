@@ -28,6 +28,7 @@ socketServer.on('connection', (ws) => {
     console.log('we have received a request')
     
     // executing the mjpg_streamer
+    
     cmd.get(`cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental
              export LD_LIBRARY_PATH=.
              mjpg_streamer -i "./input_uvc.so -n -f 30 -r 640x480 -d /dev/video0"  -o "./output_http.so -w ./www"`,
@@ -36,20 +37,22 @@ socketServer.on('connection', (ws) => {
                console.log('error: ', err)
             }
              
-        });
+        })
+      
     //ws.send('streaming started')
   })
 
   ws.on('close', (socketClient) => {
     console.log('closed')
     console.log('Number of clients: ', socketServer.clients.size)
-    // need to shut down the streamer only if there's no client left
+    
+    // shut down the streamer only if there's no client left
     if (socketServer.clients.size == 0) {
-    cmd.get(`kill $(pgrep mjpg_streamer) > /dev/null 2>&1`, function(err, data, stderr){
-               if (err) {
-               console.log(err)
-            }
-            //console.log('success')
+      //console.log('zero!')
+      cmd.get(`kill $(pgrep mjpg_streamer) > /dev/null 2>&1`, function(err, data, stderr){
+              if (err) {
+              console.log(err)
+          }
         })
       }
   })
