@@ -1,3 +1,9 @@
+<!--
+	Page for live-streaming. It connects to the websocket server,
+	and starts to stream the video as soon as the user opens the page.
+	The video is displayed on img tag
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +17,12 @@
 	<a href="index.html">Go to main page</a>
 	<img id="streamImage" class="xform" src="" />
 	<script>
-		const ws = new WebSocket('ws://10.0.0.223:3030')
+		const ws = new WebSocket('ws://10.0.0.223:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
 
 		ws.onopen = () => {
 			console.log('Now connected')
 			ws.send('trigger')	// send message to server so it starts mjpg_streamer
-			document.getElementById("streamImage").src = "http://10.0.0.223:8080/?action=stream"
+			document.getElementById("streamImage").src = "http://10.0.0.223:8080/?action=stream"	// streaming video by using mjpg_streamer
 		}
 
 		ws.onclose = () => {
