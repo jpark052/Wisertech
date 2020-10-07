@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>setting page</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+
+	<div data-role="setting">
+
+		<div data-role="header">
+			<h1>Page Title</h1>
+		</div><!-- /header -->
+
+		<div role="main" class="ui-content">
+			<ul data-role="listview" data-inset="true" data-divider-theme="a">
+				    <li data-role="list-divider">Setting Menu</li>
+				    
+				    <li>
+					<lable>Radio buttons, mini, horizontal controlgroup:</label>
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="float:right">
+							    
+							        <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list"
+								checked="checked">
+							        <label for="radio-choice-c">List</label>
+							        <input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid">
+							        <label for="radio-choice-d">Grid</label>
+							        <input type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery">
+							        <label for="radio-choice-e">Gallery</label>
+						</fieldset>
+
+				</li>
+				<li>
+					<select name="slider2" id="slider2" data-role="slider" style="float:right">
+						    <option value="off">Off</option>
+						    <option value="on">On</option>
+					</select>
+				</li>
+				<li>
+					<legend>Horizontal controlgroup:</legend>
+					<fieldset data-role="controlgroup" data-type="horizontal" style="float:right">
+						    
+						    <label for="select-native-11">Select A</label>
+						    <select name="select-native-11" id="select-native-11">
+							        <option value="#">One</option>
+							        <option value="#">Two</option>
+							        <option value="#">Three</option>
+							    </select>
+					</fieldset>
+
+				</li>
+				<li>
+					<div style="float: left">Absorbtion Voltage</div>
+					<div style="float: right">57.60V</div>
+				</li>
+				<li>
+					<div style="float: left">Maximum absorbtion time</div>
+					<div style="float: right">55.20V</div>
+				</li>
+				<li>
+					<div style="float: left">Float voltage</div>
+					<div style="float: right">64.80V</div>
+				</li>
+				<li>
+					<div style="float: left">Manual Equalization</div>
+					<div style="float: right"><input type="button" data-inline="true" value="start">
+						    </div>
+				</li>
+				<li>
+					
+					<select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+						    <option>subsetting menu</option>
+						    <option value="a">option a</option>
+						    <option value="b">option b</option>
+						    <option value="c">option c</option>
+						    <option value="d">option d</option>
+					</select>
+				</li>
+
+			</ul>
+
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Tabs Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+       
+
+    <div data-role="tabs" id="tabs">
+          <div data-role="navbar">
+                <ul>
+                      <li><a href="#one" data-icon="grid">Summary</a></li>
+                                <li><a href="#two" data-icon="star" class="ui-btn-active">more items</a></li>
+                                
+                    </ul>
+              </div>
+
+          <div id="one" class="ui-body-d ui-content">
+                <h1>First tab contents</h1>
+              </div>
+
+          <div id="two">
+                <ul data-role="listview" data-inset="true" data-divider-theme="a">
+                    <li data-role="list-divider">I am a divider</li>
+                    <li>Read</li>
+                    <li>only</li>
+                    <li>items</li>
+                    <li data-role="list-divider">I am a divider as well</li>
+                    <li><a href="#">you can</a></li>
+                    <li><a href="#">click me</a></li>
+            </ul>
+
+              </div>
+
+
+    </div>
+
+</body>
+
+</html>
