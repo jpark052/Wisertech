@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Setting Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+
+</head>
+
+<body>
+
+
+    <div data-role="page" data-theme="b">
+
+        <div data-role="panel" id="mypanel" data-position="right" data-display="push">
+            <ul data-role="listview" data-inset="true">
+                    <li><a href="./motors.html">Motors</a></li>
+                    <li><a href="#sensors">Sensors</a></li>
+                    <li><a href="#">Power</a></li>
+                    <li><a href="#">Setting</a></li>
+            </ul>
+        </div>
+
+        <div data-role="header">
+            <h2>Setting</h2>
+            <!-- <a class="ui-btn-right ui-icon-bars" href="#mypanel" data-role="button" data-inline="true">Open panel</a> -->
+
+            <a href="#mypanel" data-icon="grid" class="ui-btn-right">Panel</a>
+            <!-- <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars">bars</button> -->
+
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+            <p>Page content goes here.</p>
+            <ul data-role="listview" data-inset="true" data-divider-theme="a">
+                <li>
+                    <lable>Theme</label>
+                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="float:right">
+                                
+                                    <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked">
+                                    <label for="radio-choice-c">A</label>
+                                    <input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid">
+                                    <label for="radio-choice-d">B</label>
+                                    
+                        </fieldset>
+
+                </li>
+                <li>
+                    <select name="slider2" id="slider2" data-role="slider" style="float:right">
+                            <option value="off">Off</option>
+                            <option value="on">On</option>
+                    </select>
+                </li>
+                <li>
+                    List
+                </li>
+                <li>
+                    of
+                </li>
+                <li>
+                    of
+                </li>
+                <li>
+                    items
+                </li>
+
+            </ul>
+
+        </div><!-- /content -->
+
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div><!-- /footer -->
+    </div><!-- /page -->
+
+</body>
+
+</html>
