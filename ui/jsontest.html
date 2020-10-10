@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h2>json test</h2>
+</body>
+
+</html>
+
+<script>
+
+    const ws = new WebSocket('ws://10.0.0.223:3030')
+
+    ws.onopen = () => {
+        console.log('Now connected')
+        
+    }
+
+    ws.onmessage = (message) => {
+        console.log('we got a message')
+        console.log(message)
+        console.log(JSON.parse(message.data))
+    }
+    ws.onclose = () => {
+        console.log('connection closed')
+    }
+
+
+</script>
