@@ -17,13 +17,18 @@
 
     ws.onopen = () => {
         console.log('Now connected')
-        
+
     }
 
     ws.onmessage = (message) => {
-        console.log('we got a message')
-        console.log(message)
-        console.log(JSON.parse(message.data))
+        let received = JSON.parse(message.data)
+        if (received.dataType == 'userInfo') {
+            console.log('we got a message')
+            var clientData = JSON.parse(message.data)
+
+            console.log(clientData.firstName)
+            console.log(clientData.configuration)
+        }
     }
     ws.onclose = () => {
         console.log('connection closed')

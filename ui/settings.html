@@ -13,8 +13,7 @@
 
 <body>
 
-
-    <div data-role="page" data-theme="b">
+    <div data-role="page" id="settingPage" >
 
         <div data-role="panel" id="mypanel" data-position="right" data-display="push">
             <ul data-role="listview" data-inset="true">
@@ -41,10 +40,11 @@
                     <lable>Theme</label>
                         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="float:right">
                                 
-                                    <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked">
-                                    <label for="radio-choice-c">A</label>
-                                    <input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid">
-                                    <label for="radio-choice-d">B</label>
+                                    <input type="radio" name="radio-choice-b" id="radio-choice-A" value="list"
+                                checked="checked">
+                                    <label for="radio-choice-A">A</label>
+                                    <input type="radio" name="radio-choice-b" id="radio-choice-B" value="grid">
+                                    <label for="radio-choice-B">B</label>
                                     
                         </fieldset>
 
@@ -70,6 +70,8 @@
 
             </ul>
 
+            <button id="mabu" class="ui-btn ui-btn-inline">Button</button>
+
         </div><!-- /content -->
 
         <div data-role="footer">
@@ -80,3 +82,49 @@
 </body>
 
 </html>
+
+<script>
+    const ws = new WebSocket('ws://10.0.0.223:3030')
+    let userJSON
+    let dataJson 
+
+    ws.onopen = () => {
+        console.log('Now connected')
+
+    }
+
+    ws.onmessage = (message) => {
+        console.log('we got a message')
+        let received = JSON.parse(message.data)
+
+        if (received.dataType == 'userInfo') {
+            userJSON = received
+            themeChange(userJSON.configuration.theme) // applying the theme that user chose the last time
+        } else (
+            console.log(received)
+        )
+
+    }
+    ws.onclose = () => {
+        console.log('connection closed')
+    }
+
+    function themeChange(themeChar) {
+        $( "#settingPage" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( `ui-page-theme-${themeChar}` )
+    }
+
+    $(document).ready(function () {
+        $("#radio-choice-A").click(function () {
+            themeChange('a')
+            userJSON.configuration.theme = "a"  // updating user theme preference
+            ws.send(JSON.stringify(userJSON))
+        });
+
+        $("#radio-choice-B").click(function () {
+            themeChange('b')
+            userJSON.configuration.theme = "b"  // updating user theme preference
+            ws.send(JSON.stringify(userJSON))
+        });
+    });
+
+</script>

@@ -15,7 +15,7 @@ const WebSocket = require('ws')
 
 app.get('/', (req, res) => {
     res.send('Users Page')
-  })
+})
 
 app.get('/settings', (req, res) => {
     res.sendFile(path.join(__dirname, 'settings.html'))
@@ -36,21 +36,36 @@ const socketServer = new WebSocket.Server({ port: 3030 })
 socketServer.on('connection', (ws) => {
     console.log('connected')
 
-    ws.on('message', (message) => {
-      console.log(`we have received a message: `)
-      //const data = JSON.parse(message)
-      console.log(message)
-    })
-
+    // sending userInfo/configuration JSON to client when connected
     fs.readFile('./client.json', 'utf8', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err)
             return
         }
-        const data = JSON.parse(jsonString)
-        const tt = JSON.stringify(data)
-        ws.send(tt)
-        console.log(data)
+        const jsonData = JSON.parse(jsonString)
+        const stringData = JSON.stringify(jsonData)
+        ws.send(stringData)
     })
-  
-  })
+
+    // send JSON object to the client every 5 second
+    function send5sec() {
+        let dat = {
+            "dataType": "number",
+            "num": `${Math.random()}`
+        };
+        ws.send(JSON.stringify(dat))
+        setTimeout(send5sec, 5000)
+    }
+
+    send5sec()
+
+    ws.on('message', (message) => {
+        console.log(`we have received a message: `)
+        console.log(JSON.parse(message))
+
+        // updating the most recent user configuration
+        fs.writeFile('./client.json', message, (err) => {
+            if (err) console.log("Error: ", err)
+        })
+    })
+})
