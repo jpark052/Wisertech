@@ -17,20 +17,16 @@
 
         <div data-role="panel" id="mypanel" data-position="right" data-display="push">
             <ul data-role="listview" data-inset="true">
-                    <li><a href="./motors.html">Motors</a></li>
-                    <li><a href="#sensors">Sensors</a></li>
-                    <li><a href="#">Power</a></li>
-                    <li><a href="#">Setting</a></li>
+                <li><a href="/motors.html">Motors</a></li>
+                <li><a href="/sensors.html">Sensors</a></li>
+                <li><a href="./power.html">Power</a></li>
+                <li><a href="./graph.html">Graph</a></li>
             </ul>
         </div>
 
         <div data-role="header">
             <h2>Setting</h2>
-            <!-- <a class="ui-btn-right ui-icon-bars" href="#mypanel" data-role="button" data-inline="true">Open panel</a> -->
-
             <a href="#mypanel" data-icon="grid" class="ui-btn-right">Panel</a>
-            <!-- <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars">bars</button> -->
-
         </div><!-- /header -->
 
         <div role="main" class="ui-content">
@@ -45,7 +41,6 @@
                                     <label for="radio-choice-A">A</label>
                                     <input type="radio" name="radio-choice-b" id="radio-choice-B" value="grid">
                                     <label for="radio-choice-B">B</label>
-                                    
                         </fieldset>
 
                 </li>
@@ -100,9 +95,9 @@
         if (received.dataType == 'userInfo') {
             userJSON = received
             themeChange(userJSON.configuration.theme) // applying the theme that user chose the last time
-        } else (
+        } else {
             console.log(received)
-        )
+    }
 
     }
     ws.onclose = () => {

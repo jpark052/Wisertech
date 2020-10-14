@@ -13,20 +13,18 @@ const path = require('path');
 const fs = require('fs')
 const WebSocket = require('ws')
 
+let graphJSON
+
+app.use(express.static(__dirname + '/public'))
+
 app.get('/', (req, res) => {
-    res.send('Users Page')
+    res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-app.get('/settings', (req, res) => {
-    res.sendFile(path.join(__dirname, 'settings.html'))
-})
-
-app.get('/sensors', (req, res) => {
-    res.sendFile(path.join(__dirname, 'sensors.html'))
-})
-
-app.get('/jsontest', (req, res) => {
-    res.sendFile(path.join(__dirname, 'jsontest.html'))
+app.get('/graph', (req, res) => {
+    res.write(path.join(__dirname, 'graph.html'))
+    res.write("sup")
+    //res.send("helloooooo")
 })
 
 app.listen(3000, () => console.log('Server Started'))
@@ -47,17 +45,30 @@ socketServer.on('connection', (ws) => {
         ws.send(stringData)
     })
 
+    fs.readFile('./clientGraph.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("File read failed:", err)
+            return
+        }
+        graphJSON = JSON.parse(jsonString)
+        send5sec()
+    })
+
+
     // send JSON object to the client every 5 second
     function send5sec() {
-        let dat = {
-            "dataType": "number",
-            "num": `${Math.random()}`
-        };
-        ws.send(JSON.stringify(dat))
+        var dataArray = [Math.floor((Math.random() * 20) + 1),
+        Math.floor((Math.random() * 20) + 1),
+        Math.floor((Math.random() * 20) + 1),
+        Math.floor((Math.random() * 20) + 1),
+        Math.floor((Math.random() * 20) + 1),
+        Math.floor((Math.random() * 20) + 1),
+        Math.floor((Math.random() * 20) + 1)]
+        graphJSON.graphData.data.datasets[0].data = dataArray
+    
+        ws.send(JSON.stringify(graphJSON))
         setTimeout(send5sec, 5000)
     }
-
-    send5sec()
 
     ws.on('message', (message) => {
         console.log(`we have received a message: `)
