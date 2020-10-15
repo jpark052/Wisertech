@@ -5,32 +5,61 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 	<title>Stream Page</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" href="mystyle.css">
 </head>
 
 <body>
 
-	<h3>streaming page</h3>
-	<a href="index.html">Go to main page</a>
-	<img id="streamImage" class="xform" src="" />
-	<script>
-		const ws = new WebSocket('ws://10.0.0.223:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
+	<div data-role="page">
 
-		ws.onopen = () => {
-			console.log('Now connected')
-			ws.send('trigger')	// send message to server so it starts mjpg_streamer
-			document.getElementById("streamImage").src = "http://10.0.0.223:8080/?action=stream"	// streaming video by using mjpg_streamer
-		}
+		<div data-role="panel" id="mypanel" data-position="right" data-display="push">
+			<ul data-role="listview" data-inset="true">
+				<li><a href="/motors.html">Motors</a></li>
+				<li><a href="/sensors.html">Sensors</a></li>
+				<li><a href=".power.html">Power</a></li>
+				<li><a href="./settings.html">Setting</a></li>
+			</ul>
+		</div>
 
-		ws.onclose = () => {
-			console.log('connection closed')
-		}
+		<div data-role="header">
+			<h1>Page Title</h1>
+			<a href="#mypanel" data-icon="grid" class="ui-btn-right">Panel</a>
+		</div><!-- /header -->
 
-	</script>
+		<div role="main" class="ui-content">
+			<p>Page content goes here.</p>
+			<img id="streamImage" class="xform" src="" />
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
 
 </body>
 
 </html>
+
+<script>
+	const ws = new WebSocket('ws://10.0.0.147:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
+
+	ws.onopen = () => {
+		console.log('Now connected')
+		let triggerJSON = {"dataType": "videoTrigger"}
+		ws.send(JSON.stringify(triggerJSON))	// send message to server so it starts mjpg_streamer
+		document.getElementById("streamImage").src = "http://10.0.0.147:8080/?action=stream"	// streaming video by using mjpg_streamer
+	}
+
+	ws.onclose = () => {
+		console.log('connection closed')
+	}
+</script>

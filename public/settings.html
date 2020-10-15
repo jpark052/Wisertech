@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Setting Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+
+</head>
+
+<body>
+
+    <div data-role="page" id="settingPage">
+
+        <div data-role="panel" id="mypanel" data-position="right" data-display="push">
+            <ul data-role="listview" data-inset="true">
+                <li><a href="/motors.html">Motors</a></li>
+                <li><a href="/sensors.html">Sensors</a></li>
+                <li><a href="./power.html">Power</a></li>
+                <li><a href="./graph.html">Graph</a></li>
+            </ul>
+        </div>
+
+        <div data-role="header">
+            <h2>Setting</h2>
+            <a href="#mypanel" data-icon="grid" class="ui-btn-right">Panel</a>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+            <p>Page content goes here.</p>
+            <ul data-role="listview" data-inset="true" data-divider-theme="a">
+                <li>
+                    <lable>Theme</label>
+                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="float:right">
+                                
+                                    <input type="radio" name="radio-choice-b" id="radio-choice-A" value="list"
+                                checked="checked">
+                                    <label for="radio-choice-A">A</label>
+                                    <input type="radio" name="radio-choice-b" id="radio-choice-B" value="grid">
+                                    <label for="radio-choice-B">B</label>
+                        </fieldset>
+
+                </li>
+                <li>
+                    <select name="slider2" id="slider2" data-role="slider" style="float:right">
+                            <option value="off">Off</option>
+                            <option value="on">On</option>
+                    </select>
+                </li>
+                <li>
+                    List
+                </li>
+                <li>
+                    of
+                </li>
+                <li>
+                    items
+                </li>
+                <li>
+                        <label for="select-native-1">Select quality of Video:</label>
+                        <select name="select-native-1" id="videoQuaility">
+                                <option value="640x480">640 x 480</option>
+                                <option value="1280x720">1280 x 720 (default)</option>
+                                <option value="1280x960">1280 x 960</option>
+                            </select>
+                </li>
+                <li>
+                    <label for="text-6">Amplitude:</label>
+                         <input type="text" name="amplitude" id="amplitude" value="" placeholder="e.g. 30">
+                </li>
+                <button id="updateButton" class="ui-btn ui-btn-inline">Update New Setting</button>
+            </ul>
+
+
+        </div><!-- /content -->
+
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div><!-- /footer -->
+    </div><!-- /page -->
+
+</body>
+
+</html>
+
+<script>
+    const ws = new WebSocket('ws://10.0.0.147:3030')
+    let userJSON
+    let dataJson
+
+    ws.onopen = () => {
+        console.log('Now connected')
+
+    }
+
+    ws.onmessage = (message) => {
+        console.log('we got a message')
+        let received = JSON.parse(message.data)
+
+        if (received.dataType == 'userInfo') {
+            userJSON = received
+            themeChange(userJSON.configuration.theme) // applying the theme that user chose the last time
+        } else {
+            console.log(received)
+        }
+
+    }
+    ws.onclose = () => {
+        console.log('connection closed')
+    }
+
+    function themeChange(themeChar) {
+        $("#settingPage").removeClass("ui-page-theme-a ui-page-theme-b").addClass(`ui-page-theme-${themeChar}`)
+    }
+
+    $(document).ready(function () {
+        $("#radio-choice-A").click(function () {
+            themeChange('a')
+            userJSON.configuration.theme = "a"  // updating user theme preference
+            ws.send(JSON.stringify(userJSON))
+        });
+
+        $("#radio-choice-B").click(function () {
+            themeChange('b')
+            userJSON.configuration.theme = "b"  // updating user theme preference
+            ws.send(JSON.stringify(userJSON))
+        });
+
+        $("#updateButton").click(function () {
+            //var str = $("#videoQuaility").val();
+            //alert(str);
+            var newSetting = { "dataType": "configuration" }
+            newSetting.videoQuaility = $("#videoQuaility").val();
+            newSetting.amplitude = $("#amplitude").val();
+            console.log(newSetting)
+            ws.send(JSON.stringify(newSetting))
+        });
+    });
+
+</script>

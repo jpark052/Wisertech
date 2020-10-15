@@ -1,0 +1,40 @@
+{
+	"dataType": "graph",
+	"graphData": {
+		"type": "line",
+		"axisY": {
+			"title": "Number of Sales",
+			"suffix": "K",
+			"minimum": 30,
+			"maximum": 100
+		},
+		"data": {
+			"labels": [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July"
+			],
+			"datasets": [
+				{
+					"label": "My First dataset",
+					"backgroundColor": "rgb(255, 99, 132)",
+					"borderColor": "rgb(255, 99, 132)",
+					"data": [
+						33,
+						76,
+						43,
+						97,
+						14,
+						40,
+						73
+					]
+				}
+			]
+		},
+		"options": {}
+	}
+}

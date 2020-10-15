@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Graph Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<body>
+
+    <div data-role="page" id="graphPage">
+
+        <div data-role="panel" id="mypanel" data-position="right" data-display="push">
+            <ul data-role="listview" data-inset="true">
+                <li><a href="/motors.html">Motors</a></li>
+                <li><a href="/sensors.html">Sensors</a></li>
+                <li><a href="./power.html">Power</a></li>
+                <li><a href="./settings.html">Setting</a></li>
+            </ul>
+        </div>
+
+        <div data-role="header">
+            <h1>Graph</h1>
+            <a href="#mypanel" data-icon="grid" class="ui-btn-right">Panel</a>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+            <p>Page content goes here.</p>
+            <canvas id="myChart"></canvas>
+
+            <label for="text-6">Amplitude:</label>
+                 <input type="text" name="amplitude" id="amplitude" value="" placeholder="e.g. 30">
+            <button class="ui-btn ui-btn-inline" onclick="amplitudeChange()">Submit</button>
+
+            <div id="stage" style="background-color:#cc0;">
+                STAGE
+            </div>
+
+            <input type="button" id="driver" value="Load Data" />
+
+
+
+        </div><!-- /content -->
+
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div><!-- /footer -->
+    </div><!-- /page -->
+
+</body>
+
+</html>
+
+<script>
+
+
+    let graphJSON
+    let configJSON
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    $(document).ready(function () {
+
+        $.getJSON('client.json', function (jd) {
+            console.log(jd)
+            themeChange(jd.configuration.theme)
+        });
+    });
+
+    function drawGraph() {
+        $.getJSON('clientGraph.json', function (jd) {
+            graphJSON = jd
+            console.log(graphJSON.graphData)
+            var chart = new Chart(ctx, graphJSON.graphData);
+            chart.render()
+        });
+        setTimeout(drawGraph, 2000)
+    }
+
+    drawGraph()
+
+
+    function themeChange(themeChar) {
+        $("#graphPage").removeClass("ui-page-theme-a ui-page-theme-b").addClass(`ui-page-theme-${themeChar}`)
+    }
+
+
+
+
+
+
+
+
+
+
+    //     let received = JSON.parse(message.data)
+
+    //     if (received.dataType == 'userInfo') {
+    //         themeChange(received.configuration.theme) // applying the theme that user chose the last time
+    //     } else {
+    //         graphJSON = received
+    //         console.log(graphJSON)
+            // var ctx = document.getElementById('myChart').getContext('2d');
+            // var chart = new Chart(ctx, graphJSON.graphData);
+            // chart.render()
+    //     }
+
+
+    // ws.onclose = () => {
+    //     console.log('connection closed')
+    // }
+
+
+    // function amplitudeChange() {
+    //     console.log('sup')
+    //     console.log(graphJSON)
+    // }
+
+    // $(document).ready(function() {
+
+    //         $("#driver").click(function(event){
+    //            $.getJSON('result.json', function(jd) {
+    //               $('#stage').html('<p> Name: ' + jd.name + '</p>');
+    //               $('#stage').append('<p>Age : ' + jd.age+ '</p>');
+    //               $('#stage').append('<p> Sex: ' + jd.sex+ '</p>');
+    //            });
+    //         });
+
+    //      });
+
+</script>
