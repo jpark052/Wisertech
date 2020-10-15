@@ -13,7 +13,7 @@
 
 <body>
 
-    <div data-role="page" id="settingPage" >
+    <div data-role="page" id="settingPage">
 
         <div data-role="panel" id="mypanel" data-position="right" data-display="push">
             <ul data-role="listview" data-inset="true">
@@ -57,15 +57,23 @@
                     of
                 </li>
                 <li>
-                    of
-                </li>
-                <li>
                     items
                 </li>
-
+                <li>
+                        <label for="select-native-1">Select quality of Video:</label>
+                        <select name="select-native-1" id="videoQuaility">
+                                <option value="640x480">640 x 480</option>
+                                <option value="1280x720">1280 x 720 (default)</option>
+                                <option value="1280x960">1280 x 960</option>
+                            </select>
+                </li>
+                <li>
+                    <label for="text-6">Amplitude:</label>
+                         <input type="text" name="amplitude" id="amplitude" value="" placeholder="e.g. 30">
+                </li>
+                <button id="updateButton" class="ui-btn ui-btn-inline">Update New Setting</button>
             </ul>
 
-            <button id="mabu" class="ui-btn ui-btn-inline">Button</button>
 
         </div><!-- /content -->
 
@@ -81,7 +89,7 @@
 <script>
     const ws = new WebSocket('ws://10.0.0.223:3030')
     let userJSON
-    let dataJson 
+    let dataJson
 
     ws.onopen = () => {
         console.log('Now connected')
@@ -97,7 +105,7 @@
             themeChange(userJSON.configuration.theme) // applying the theme that user chose the last time
         } else {
             console.log(received)
-    }
+        }
 
     }
     ws.onclose = () => {
@@ -105,7 +113,7 @@
     }
 
     function themeChange(themeChar) {
-        $( "#settingPage" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( `ui-page-theme-${themeChar}` )
+        $("#settingPage").removeClass("ui-page-theme-a ui-page-theme-b").addClass(`ui-page-theme-${themeChar}`)
     }
 
     $(document).ready(function () {
@@ -119,6 +127,16 @@
             themeChange('b')
             userJSON.configuration.theme = "b"  // updating user theme preference
             ws.send(JSON.stringify(userJSON))
+        });
+
+        $("#updateButton").click(function () {
+            //var str = $("#videoQuaility").val();
+            //alert(str);
+            var newSetting = { "dataType": "configuration" }
+            newSetting.videoQuaility = $("#videoQuaility").val();
+            newSetting.amplitude = $("#amplitude").val();
+            console.log(newSetting)
+            ws.send(JSON.stringify(newSetting))
         });
     });
 

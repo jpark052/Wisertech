@@ -38,11 +38,11 @@
                  <input type="text" name="amplitude" id="amplitude" value="" placeholder="e.g. 30">
             <button class="ui-btn ui-btn-inline" onclick="amplitudeChange()">Submit</button>
 
-            <div id = "stage" style = "background-color:#cc0;">
+            <div id="stage" style="background-color:#cc0;">
                 STAGE
-             </div>
-               
-             <input type = "button" id = "driver" value = "Load Data" />
+            </div>
+
+            <input type="button" id="driver" value="Load Data" />
 
 
 
@@ -59,53 +59,78 @@
 
 <script>
 
-    const ws = new WebSocket('ws://10.0.0.223:3030')
+
     let graphJSON
+    let configJSON
+    var ctx = document.getElementById('myChart').getContext('2d');
 
-    ws.onopen = () => {
-        console.log('Now connected')
+    $(document).ready(function () {
 
-    }
+        $.getJSON('client.json', function (jd) {
+            console.log(jd)
+            themeChange(jd.configuration.theme)
+        });
+    });
 
-    ws.onmessage = (message) => {
-        console.log('we got a message')
-        console.log(message)
-        let received = JSON.parse(message.data)
-
-        if (received.dataType == 'userInfo') {
-            themeChange(received.configuration.theme) // applying the theme that user chose the last time
-        } else {
-            graphJSON = received
-            console.log(graphJSON)
-            var ctx = document.getElementById('myChart').getContext('2d');
+    function drawGraph() {
+        $.getJSON('clientGraph.json', function (jd) {
+            graphJSON = jd
+            console.log(graphJSON.graphData)
             var chart = new Chart(ctx, graphJSON.graphData);
             chart.render()
-        }
+        });
+        setTimeout(drawGraph, 2000)
     }
 
-    ws.onclose = () => {
-        console.log('connection closed')
-    }
+    drawGraph()
+
 
     function themeChange(themeChar) {
-        $("#settingPage").removeClass("ui-page-theme-a ui-page-theme-b").addClass(`ui-page-theme-${themeChar}`)
+        $("#graphPage").removeClass("ui-page-theme-a ui-page-theme-b").addClass(`ui-page-theme-${themeChar}`)
     }
 
-    function amplitudeChange() {
-        console.log('sup')
-        console.log(graphJSON)
-    }
 
-    $(document).ready(function() {
-			
-            $("#driver").click(function(event){
-               $.getJSON('result.json', function(jd) {
-                  $('#stage').html('<p> Name: ' + jd.name + '</p>');
-                  $('#stage').append('<p>Age : ' + jd.age+ '</p>');
-                  $('#stage').append('<p> Sex: ' + jd.sex+ '</p>');
-               });
-            });
-				
-         });
+
+
+
+
+
+
+
+
+    //     let received = JSON.parse(message.data)
+
+    //     if (received.dataType == 'userInfo') {
+    //         themeChange(received.configuration.theme) // applying the theme that user chose the last time
+    //     } else {
+    //         graphJSON = received
+    //         console.log(graphJSON)
+            // var ctx = document.getElementById('myChart').getContext('2d');
+            // var chart = new Chart(ctx, graphJSON.graphData);
+            // chart.render()
+    //     }
+
+
+    // ws.onclose = () => {
+    //     console.log('connection closed')
+    // }
+
+
+    // function amplitudeChange() {
+    //     console.log('sup')
+    //     console.log(graphJSON)
+    // }
+
+    // $(document).ready(function() {
+
+    //         $("#driver").click(function(event){
+    //            $.getJSON('result.json', function(jd) {
+    //               $('#stage').html('<p> Name: ' + jd.name + '</p>');
+    //               $('#stage').append('<p>Age : ' + jd.age+ '</p>');
+    //               $('#stage').append('<p> Sex: ' + jd.sex+ '</p>');
+    //            });
+    //         });
+
+    //      });
 
 </script>
