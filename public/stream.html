@@ -21,6 +21,7 @@
 
 	<div data-role="page">
 
+
 		<div data-role="panel" id="mypanel" data-position="right" data-display="push">
 			<ul data-role="listview" data-inset="true">
 				<li><a href="/motors.html">Motors</a></li>
@@ -50,6 +51,7 @@
 </html>
 
 <script>
+
 	const ws = new WebSocket('ws://172.27.236.11:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
 
 	ws.onopen = () => {
@@ -66,4 +68,6 @@
 	ws.onclose = () => {
 		console.log('connection closed')
 	}
+
 </script>
+

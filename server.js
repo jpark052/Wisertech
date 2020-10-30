@@ -65,6 +65,7 @@ socketServer.on('connection', (ws) => {
     if (received.dataType == "userInfo") {
       fs.writeFile('./client.json', message, (err) => {
         if (err) console.log("Error: ", err)
+
       })
 
     } else if (received.dataType == "graphData") {
@@ -82,10 +83,12 @@ socketServer.on('connection', (ws) => {
       cmd.get(`cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental
     export LD_LIBRARY_PATH=.
     mjpg_streamer -i "./input_uvc.so -n -f 30 -r 640x480 -d /dev/video0"  -o "./output_http.so -w ./www"`,
+
         function (err, data, stderr) {
           if (err) {
             console.log('error: ', err)
           }
+
           ws.send('stream start')
         })
     }
@@ -139,4 +142,3 @@ function renew5sec() {
 
   setTimeout(renew5sec, 1000)
 }
-
