@@ -78,6 +78,13 @@ socketServer.on('connection', (ws) => {
       let amplitude = received.amplitude
 
     } else if (received.dataType == "videoTrigger") {
+
+      cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) {
+        if (err) {
+          console.log('error: ', err)
+        }
+        ws.send(data)
+      })
       
       // executing the mjpg_streamer. It will be displayed in 'stream.html' page
       cmd.get(`cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental
@@ -88,8 +95,6 @@ socketServer.on('connection', (ws) => {
           if (err) {
             console.log('error: ', err)
           }
-
-          ws.send('stream start')
         })
     }
   })
