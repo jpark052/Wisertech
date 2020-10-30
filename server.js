@@ -17,7 +17,8 @@ cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) 
   if (err) {
     console.log('error: ', err)
   }
-  export const ipAddress = data
+  const ipAddress = data
+  module.exports = ipAddress
 })
 
 
