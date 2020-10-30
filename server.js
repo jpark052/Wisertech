@@ -13,15 +13,6 @@ const cmd = require("node-cmd") // cmd package is required to execute shell comm
 const port = 8765
 const fs = require("fs")
 
-cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) {
-  if (err) {
-    console.log('error: ', err)
-  }
-  const ipAddress = data
-  module.exports = ipAddress
-})
-
-
 let graphJSON
 let userJSON
 
