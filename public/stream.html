@@ -50,14 +50,18 @@
 </html>
 
 <script>
-	const ws = new WebSocket('ws://10.0.0.147:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
+	const ws = new WebSocket('ws://172.27.236.11:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
 
 	ws.onopen = () => {
 		console.log('Now connected')
 		let triggerJSON = {"dataType": "videoTrigger"}
 		ws.send(JSON.stringify(triggerJSON))	// send message to server so it starts mjpg_streamer
-		document.getElementById("streamImage").src = "http://10.0.0.147:8080/?action=stream"	// streaming video by using mjpg_streamer
+		
 	}
+	
+	ws.onmessage = (message) => {
+		document.getElementById("streamImage").src = "http://10.0.0.147:8080/?action=stream"	// streaming video by using mjpg_streamer
+		}
 
 	ws.onclose = () => {
 		console.log('connection closed')
