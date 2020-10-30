@@ -13,6 +13,14 @@ const cmd = require("node-cmd") // cmd package is required to execute shell comm
 const port = 8765
 const fs = require("fs")
 
+cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) {
+  if (err) {
+    console.log('error: ', err)
+  }
+  export const ipAddress = data
+})
+
+
 let graphJSON
 let userJSON
 
@@ -79,12 +87,12 @@ socketServer.on('connection', (ws) => {
 
     } else if (received.dataType == "videoTrigger") {
 
-      cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) {
-        if (err) {
-          console.log('error: ', err)
-        }
-        ws.send(data)
-      })
+      // cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) {
+      //   if (err) {
+      //     console.log('error: ', err)
+      //   }
+      //   ws.send(data)
+      // })
       
       // executing the mjpg_streamer. It will be displayed in 'stream.html' page
       cmd.get(`cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental

@@ -52,6 +52,9 @@
 
 <script>
 
+	import { ipAddress } from '../server'
+	console.log(ipAddress)
+	console.log('hey')
 	const ws = new WebSocket('ws://10.0.0.147:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
 
 	ws.onopen = () => {
@@ -63,7 +66,7 @@
 	
 	ws.onmessage = (message) => {
 
-		console.log(message.data)
+		//console.log(message.data)
 		//document.getElementById("streamImage").src = "http://172.27.236.12/?action=stream"	// streaming video by using mjpg_streamer
 		}
 
