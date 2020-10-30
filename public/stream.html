@@ -52,10 +52,11 @@
 
 <script>
 
-	console.log(ipAddress)
-	console.log('hey')
+	
 	const ws = new WebSocket('ws://10.0.0.147:3030')	// Initializing websocket connection. It is using hardcoded IP address of Pi (server)
 
+	console.log(ipAddress)
+	console.log('hey')
 	ws.onopen = () => {
 		console.log('Now connected')
 		let triggerJSON = {"dataType": "videoTrigger"}
