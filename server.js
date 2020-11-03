@@ -96,7 +96,7 @@ socketServer.on('connection', (ws) => {
  
         }
     );
-        ws.send("video start")
+        setTimeout(function(){ ws.send("video start") }, 5000);
 
     }
   })
