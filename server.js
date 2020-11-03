@@ -88,8 +88,7 @@ socketServer.on('connection', (ws) => {
       
       // executing the mjpg_streamer. It will be displayed in 'stream.html' page
       cmd.get(`cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental
-    export LD_LIBRARY_PATH=.
-    mjpg_streamer -i "./input_uvc.so -n -f 30 -r 640x480 -d /dev/video0"  -o "./output_http.so -w ./www"`,
+      ./mjpg_streamer -i "./input_uvc.so" -o "./output_http.so -w ./www"`,
 
         function (err, data, stderr) {
           if (err) {
