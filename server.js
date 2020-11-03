@@ -44,13 +44,13 @@ socketServer.on('connection', (ws) => {
     ws.send(stringData)
   })
 
-  fs.readFile('./clientGraph.json', 'utf8', (err, jsonString) => {
-    if (err) {
-      console.log("File read failed:", err)
-      return
-    }
-    graphJSON = JSON.parse(jsonString)
-  })
+  // fs.readFile('./clientGraph.json', 'utf8', (err, jsonString) => {
+  //   if (err) {
+  //     console.log("File read failed:", err)
+  //     return
+  //   }
+  //   graphJSON = JSON.parse(jsonString)
+  // })
 
 
 
