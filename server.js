@@ -59,9 +59,9 @@ socketServer.on('connection', (ws) => {
   ws.on('message', (message) => {
     console.log('we have received a request')
 
-    console.log(message)
+    
     let received = JSON.parse(message)
-
+    console.log(received)
     // updating the most recent user configuration
     if (received.dataType == "userInfo") {
       fs.writeFile('./client.json', message, (err) => {
