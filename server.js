@@ -11,7 +11,8 @@ const WebSocket = require('ws')
 const app = express();  // initialize express server
 const cmd = require("node-cmd") // cmd package is required to execute shell command
 const port = 8765
-const fs = require("fs")
+const fs = require("fs");
+const { Console } = require('console');
 
 let graphJSON
 let userJSON
@@ -58,7 +59,7 @@ socketServer.on('connection', (ws) => {
   ws.on('message', (message) => {
     console.log('we have received a request')
 
-
+    console.log(message)
     let received = JSON.parse(message)
 
     // updating the most recent user configuration
