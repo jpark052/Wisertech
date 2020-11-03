@@ -95,6 +95,7 @@ socketServer.on('connection', (ws) => {
           if (err) {
             console.log('error: ', err)
           }
+          ws.send("start video")
         })
     }
   })
@@ -115,17 +116,17 @@ socketServer.on('connection', (ws) => {
   })
 })
 
-fs.readFile('./public/clientGraph.json', 'utf8', (err, jsonString) => {
-  if (err) {
-    console.log("File read failed:", err)
-    return
-  }
-  graphJSON = JSON.parse(jsonString)
-  console.log(graphJSON)
+// fs.readFile('./public/clientGraph.json', 'utf8', (err, jsonString) => {
+//   if (err) {
+//     console.log("File read failed:", err)
+//     return
+//   }
+//   graphJSON = JSON.parse(jsonString)
+//   console.log(graphJSON)
 
-  renew5sec();
+//   renew5sec();
 
-})
+// })
 
 
 function renew5sec() {
