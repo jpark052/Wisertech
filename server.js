@@ -41,7 +41,7 @@ socketServer.on('connection', (ws) => {
     }
     userJSON = JSON.parse(jsonString)
     const stringData = JSON.stringify(userJSON)
-    ws.send(stringData)
+    //ws.send(stringData)
   })
 
   // fs.readFile('./clientGraph.json', 'utf8', (err, jsonString) => {
