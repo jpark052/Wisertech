@@ -79,7 +79,7 @@ socketServer.on('connection', (ws) => {
       let amplitude = received.amplitude
 
     } else if (received.dataType == "videoTrigger") {
-
+      console.log("it is video")
       // cmd.get(`ip route get 1.2.3.4 | awk '{print $7}'`, function (err, data, stderr) {
       //   if (err) {
       //     console.log('error: ', err)
