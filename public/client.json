@@ -5,7 +5,7 @@
     "customerNumber": "1234",
     "configuration": {
         "theme": "a",
-        "videoQuality": "1280x720",
+        "videoQuality": "640x480",
         "fps": "30"
     }
 }

@@ -87,7 +87,7 @@ socketServer.on('connection', (ws) => {
         `
             cd /home/pi/Wisertech/mjpg-streamer/mjpg-streamer-experimental
             export LD_LIBRARY_PATH=.
-            ./mjpg_streamer -i "./input_uvc.so" -o "./output_http.so -w ./www"
+            ./mjpg_streamer -i "./input_uvc.so -n -f 30 -r ${clientConf.configuration.videoQuality}"  -o "./output_http.so -w ./www"
         `,
         function(err, data, stderr){
             if (err) {
