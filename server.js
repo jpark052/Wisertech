@@ -12,7 +12,6 @@ const app = express();  // initialize express server
 const cmd = require("node-cmd") // cmd package is required to execute shell command
 const port = 8765
 const fs = require("fs");
-const { Console } = require('console');
 var clientConf = require("./public/client.json")
 
 let graphJSON
