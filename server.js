@@ -13,19 +13,22 @@ const cmd = require("node-cmd") // cmd package is required to execute shell comm
 const port = 8765
 const fs = require("fs");
 const { Console } = require('console');
+var clientConf = require("./public/client.json")
 
 let graphJSON
 let userJSON
 
 app.use(express.static(__dirname + '/public'))  // using HTML files in 'public' folder
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'))
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'))
+// })
 
 app.listen(port, () => {
   console.log(`Server is listening at port: ${port}`)
 })
+
+console.log(clientConf.configuration.videoQuality)
 
 // initialize websocket server
 const socketServer = new WebSocket.Server({ port: 3030 })
@@ -88,16 +91,12 @@ socketServer.on('connection', (ws) => {
             ./mjpg_streamer -i "./input_uvc.so" -o "./output_http.so -w ./www"
         `,
         function(err, data, stderr){
-            if (!err) {
-               console.log('caboom')
-            } else {
-               console.log('error', err)
+            if (err) {
+              console.log('error', err)
             }
- 
         }
     );
         setTimeout(function(){ ws.send("video start") }, 5000);
-
     }
   })
 
