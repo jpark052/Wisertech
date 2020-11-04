@@ -44,7 +44,7 @@ socketServer.on('connection', (ws) => {
     }
     userJSON = JSON.parse(jsonString)
     const stringData = JSON.stringify(userJSON)
-    //ws.send(stringData)
+    ws.send(stringData)
   })
 
   // fs.readFile('./clientGraph.json', 'utf8', (err, jsonString) => {
@@ -66,7 +66,7 @@ socketServer.on('connection', (ws) => {
     console.log(received)
     // updating the most recent user configuration
     if (received.dataType == "userInfo") {
-      fs.writeFile('./client.json', message, (err) => {
+      fs.writeFile('./public/client.json', JSON.stringify(received, null, '\t'), (err) => {
         if (err) console.log("Error: ", err)
 
       })
