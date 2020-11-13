@@ -40,7 +40,6 @@ socketServer.on('connection', (ws) => {
   fs.readFile('./public/client.json', 'utf8', (err, jsonString) => {
     if (err) {
       console.log("File read failed:", err)
-      return
     }
     userJSON = JSON.parse(jsonString)
     const stringData = JSON.stringify(userJSON)
@@ -54,9 +53,6 @@ socketServer.on('connection', (ws) => {
   //   }
   //   graphJSON = JSON.parse(jsonString)
   // })
-
-
-
 
   ws.on('message', (message) => {
     console.log('we have received a request')
