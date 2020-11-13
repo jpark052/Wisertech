@@ -62,6 +62,7 @@ socketServer.on('connection', (ws) => {
     console.log(received)
     // updating the most recent user configuration
     if (received.dataType == "userInfo") {
+      console.log(received)
       fs.writeFile('./public/client.json', JSON.stringify(received, null, '\t'), (err) => {
         if (err) console.log("Error: ", err)
 
