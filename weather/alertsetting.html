@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Alert Setting Page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+    <div data-role="page">
+
+        <div data-role="header">
+            <h1>Page Title</h1>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+
+            <form>
+                <div class="ui-field-contain">
+                    <div>
+                        <label for="text-basic">Full Name:</label>
+                        <input type="text" name="userName" id="userName" value="" placeholder="e.g. John Doe">
+
+                    </div>
+                    <div>
+                        <label for="text-basic">Email Address:</label>
+                        <input type="text" name="userEmail" id="userEmail" value=""
+                            placeholder="e.g. Johndoe@gmail.com">
+                            </div>
+
+                    <div id="locationDiv" data-role="collapsible" data-collapsed="true">
+
+                        <legend>Location</legend>
+                        <input type="checkbox" name="location" id="Bowie - southern half" value="Bowie - southern half"
+                            checked="">
+                        <label for="Bowie - southern half">Bowie - southern half</label>
+                        <input type="checkbox" name="location" value="Central Coast from McInnes Island to Pine Island"
+                            id="Central Coast from McInnes Island to Pine Island">
+                        <label for="Central Coast from McInnes Island to Pine Island">Central Coast from McInnes
+                            Island
+                            to Pine Island</label>
+                        <input type="checkbox" name="location" id="Explorer - northwestern half"
+                            value="Explorer - northwestern half">
+                        <label for="Explorer - northwestern half">Explorer - northwestern half</label>
+                        <input type="checkbox" name="location" id="Explorer - southeastern half"
+                            value="Explorer - southeastern half">
+                        <label for="Explorer - southeastern half">Explorer - southeastern half</label>
+                        <input type="checkbox" name="location" id="Haro Strait" value="Haro Strait">
+                        <label for="Haro Strait">Haro Strait</label>
+                        <input type="checkbox" name="location" id="Hecate Strait - southern half"
+                            value="Hecate Strait - southern half">
+                        <label for="Hecate Strait - southern half">Hecate Strait - southern half</label>
+                        <input type="checkbox" name="location" id="Howe Sound" value="Howe Sound">
+                        <label for="Howe Sound">Howe Sound</label>
+                        <input type="checkbox" name="location" id="Johnstone Strait" value="Johnstone Strait">
+                        <label for="Johnstone Strait">Johnstone Strait</label>
+                        <input type="checkbox" name="location" id="Juan de Fuca Strait - central strait"
+                            value="Juan de Fuca Strait - central strait">
+                        <label for="Juan de Fuca Strait - central strait">Juan de Fuca Strait - central
+                            strait</label>
+                        <input type="checkbox" name="location" id="Juan de Fuca Strait - east entrance"
+                            value="Juan de Fuca Strait - east entrance">
+                        <label for="Juan de Fuca Strait - east entrance">Juan de Fuca Strait - east entrance</label>
+                        <input type="checkbox" name="location" id="Juan de Fuca Strait - west entrance"
+                            value="Juan de Fuca Strait - west entrance">
+                        <label for="Juan de Fuca Strait - west entrance">Juan de Fuca Strait - west entrance</label>
+                        <input type="checkbox" name="location" id="Queen Charlotte Sound - northern half"
+                            value="Queen Charlotte Sound - northern half">
+                        <label for="Queen Charlotte Sound - northern half">Queen Charlotte Sound - northern
+                            half</label>
+                        <input type="checkbox" name="location" id="Queen Charlotte Sound - southern half"
+                            value="Queen Charlotte Sound - southern half">
+                        <label for="Queen Charlotte Sound - southern half">Queen Charlotte Sound - southern
+                            half</label>
+                        <input type="checkbox" name="location" id="Queen Charlotte Strait"
+                            value="Queen Charlotte Strait">
+                        <label for="Queen Charlotte Strait">Queen Charlotte Strait</label>
+                        <input type="checkbox" name="location" id="Strait of Georgia - north of Nanaimo"
+                            value="Strait of Georgia - north of Nanaimo">
+                        <label for="Strait of Georgia - north of Nanaimo">Strait of Georgia - north of
+                            Nanaimo</label>
+                        <input type="checkbox" name="location" id="Strait of Georgia - south of Nanaimo"
+                            value="Strait of Georgia - south of Nanaimo">
+                        <label for="Strait of Georgia - south of Nanaimo">Strait of Georgia - south of
+                            Nanaimo</label>
+                        <input type="checkbox" name="location" id="West Coast Haida Gwaii - southern half"
+                            value="West Coast Haida Gwaii - southern half">
+                        <label for="West Coast Haida Gwaii - southern half">West Coast Haida Gwaii - southern
+                            half</label>
+                        <input type="checkbox" name="location" id="West Coast Vancouver Island North"
+                            value="West Coast Vancouver Island North">
+                        <label for="West Coast Vancouver Island North">West Coast Vancouver Island North</label>
+                        <input type="checkbox" name="location" id="West Coast Vancouver Island South"
+                            value="West Coast Vancouver Island South">
+                        <label for="West Coast Vancouver Island South">West Coast Vancouver Island South</label>
+
+                    </div>
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <legend>Severity:</legend>
+                        <input type="checkbox" id="STRONG WIND">
+                        <label for="STRONG WIND">STRONG WIND</label>
+                        <input type="checkbox" id="GALE">
+                        <label for="GALE">GALE</label>
+                        <input type="checkbox" id="STORM">
+                        <label for="STORM">STORM</label>
+                            
+                    </fieldset>
+                </div>
+            </form>
+
+            <button id="updateButton" class="ui-btn ui-btn-inline">Update</button>
+
+        </div><!-- /content -->
+
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div><!-- /footer -->
+    </div><!-- /page -->
+
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#updateButton").click(function () {
+
+            let newUser = {
+                "name": "",
+                "location": [],
+                "email": "",
+                "severity": [],
+                "warningsReceived": []
+            }
+
+            if ($("input[id='STRONG WIND']").is(':checked')) {
+                newUser.severity.push('STRONG WIND')
+            }
+
+            if ($("input[id='GALE']").is(':checked')) {
+                newUser.severity.push('GALE')
+            }
+
+            if ($("input[id='STORM']").is(':checked')) {
+                newUser.severity.push('STORM')
+            }
+
+
+            $('input[name="location"]:checked').each(function () {
+                // Either one works
+                //console.log(this.value);
+                //console.log($(this).val())
+
+                newUser.location.push(this.value)
+            });
+
+            newUser.name = $('#userName').val();
+            newUser.email = $('#userEmail').val();
+            console.log(JSON.stringify(newUser))
+
+            // send newUser object to server here
+        });
+    })
+</script>

@@ -1,0 +1,94 @@
+[
+	{
+		"name": "John Doe",
+		"location": [
+			"Johnstone Strait"
+		],
+		"email": "johndoe@gmail.com",
+		"severity": [
+			"STRONG WIND",
+			"GALE",
+			"STORM"
+		],
+		"warningsReceived": [
+			{
+				"title": "STORM WARNING IN EFFECT, Johnstone Strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"name": "Jane Smith",
+		"location": [
+			"Howe Sound"
+		],
+		"email": "janesmith@gmail.com",
+		"severity": [
+			"STRONG WIND",
+			"GALE",
+			"STORM"
+		],
+		"warningsReceived": [
+			{
+				"title": "STORM WARNING IN EFFECT, Howe Sound",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"name": "Tom Cruise",
+		"location": [
+			"Juan de Fuca Strait - west entrance"
+		],
+		"email": "tomcruise@gmail.com",
+		"severity": [
+			"STRONG WIND",
+			"GALE",
+			"STORM"
+		],
+		"warningsReceived": [
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - east entrance",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - west entrance",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - central strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"name": "Jeninfer Aniston",
+		"location": [
+			"Queen Charlotte Strait",
+			"Howe Sound"
+		],
+		"email": "jen.aniston@gmail.com",
+		"severity": [
+			"STRONG WIND",
+			"GALE",
+			"STORM"
+		],
+		"warningsReceived": [
+			{
+				"title": "STORM WARNING IN EFFECT, Queen Charlotte Strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "STORM WARNING IN EFFECT, Howe Sound",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	}
+]

@@ -1,0 +1,252 @@
+[
+	{
+		"location": "Johnstone Strait",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Johnstone Strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "West Coast Vancouver Island North",
+		"warningDetails": [
+			{
+				"title": "HURRICANE FORCE WIND WARNING IN EFFECT, West Coast Vancouver Island North",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "HURRICANE"
+			}
+		]
+	},
+	{
+		"location": "Queen Charlotte Sound - southern half",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Queen Charlotte Sound - eastern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "STORM WARNING IN EFFECT, Queen Charlotte Sound - western half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "Juan de Fuca Strait - west entrance",
+		"warningDetails": [
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - east entrance",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - west entrance",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - central strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Central Coast from McInnes Island to Pine Island",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Central Coast from McInnes Island to Pine Island",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "West Coast Vancouver Island South",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, West Coast Vancouver Island South",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "Explorer - southeastern half",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Explorer - southeastern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "STORM WARNING IN EFFECT, Explorer - northwestern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "Strait of Georgia - north of Nanaimo",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Strait of Georgia - north of Nanaimo",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Strait of Georgia - south of Nanaimo",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Explorer - southeastern half",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Explorer - southeastern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "STORM WARNING IN EFFECT, Explorer - northwestern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "Bowie - southern half",
+		"warningDetails": [
+			{
+				"title": "GALE WARNING IN EFFECT, Bowie - northern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Bowie - southern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Hecate Strait - southern half",
+		"warningDetails": [
+			{
+				"title": "GALE WARNING IN EFFECT, Hecate Strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Hecate Strait - southern half",
+		"warningDetails": [
+			{
+				"title": "GALE WARNING IN EFFECT, Hecate Strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Bowie - southern half",
+		"warningDetails": [
+			{
+				"title": "GALE WARNING IN EFFECT, Bowie - northern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Bowie - southern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Central Coast from McInnes Island to Pine Island",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Central Coast from McInnes Island to Pine Island",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "West Coast Vancouver Island South",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, West Coast Vancouver Island South",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "Juan de Fuca Strait - west entrance",
+		"warningDetails": [
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - east entrance",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - west entrance",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Juan de Fuca Strait - central strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Explorer - northwestern half",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Explorer - southeastern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "STORM WARNING IN EFFECT, Explorer - northwestern half",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	},
+	{
+		"location": "Strait of Georgia - north of Nanaimo",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Strait of Georgia - north of Nanaimo",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			},
+			{
+				"title": "GALE WARNING IN EFFECT, Strait of Georgia - south of Nanaimo",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "GALE"
+			}
+		]
+	},
+	{
+		"location": "Queen Charlotte Strait",
+		"warningDetails": [
+			{
+				"title": "STORM WARNING IN EFFECT, Queen Charlotte Strait",
+				"issued": "Issued 10:30  AM PST 16 November 2020",
+				"severity": "STORM"
+			}
+		]
+	}
+]

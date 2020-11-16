@@ -1,0 +1,80 @@
+{
+    "area": [
+        {
+            "name": "Central Coast from McInnes Island to Pine Island",
+            "URL": "https://weather.gc.ca/rss/marine/02300_e.xml"
+        },
+        {
+            "name": "Explorer - northwestern half",
+            "URL": "https://weather.gc.ca/rss/marine/04800_e.xml"
+        },
+        {
+            "name": "Johnstone Strait",
+            "URL": "https://weather.gc.ca/rss/marine/06800_e.xml"
+        },
+        {
+            "name": "Queen Charlotte Strait",
+            "URL": "https://weather.gc.ca/rss/marine/12400_e.xml"
+        },
+        {
+            "name": "Strait of Georgia - north of Nanaimo",
+            "URL": "https://weather.gc.ca/rss/marine/14300_e.xml"
+        },
+        {
+            "name": "Bowie - southern half",
+            "URL": "https://weather.gc.ca/rss/marine/01500_e.xml"
+        },
+        {
+            "name": "Explorer - southeastern half",
+            "URL": "https://weather.gc.ca/rss/marine/04800_e.xml"
+        },
+        {
+            "name": "Haro Strait",
+            "URL": "https://weather.gc.ca/rss/marine/06100_e.xml"
+        },
+        {
+            "name": "Hecate Strait - southern half",
+            "URL": "https://weather.gc.ca/rss/marine/06200_e.xml"
+        },
+        {
+            "name": "Howe Sound",
+            "URL": "https://weather.gc.ca/rss/marine/06400_e.xml"
+        },
+        {
+            "name": "Juan de Fuca Strait - east entrance",
+            "URL": "https://weather.gc.ca/rss/marine/07000_e.xml"
+        },
+        {
+            "name": "Juan de Fuca Strait - central strait",
+            "URL": "https://weather.gc.ca/rss/marine/07000_e.xml"
+        },
+        {
+            "name": "Juan de Fuca Strait - west entrance",
+            "URL": "https://weather.gc.ca/rss/marine/07000_e.xml"
+        },
+        {
+            "name": "Strait of Georgia - south of Nanaimo",
+            "URL": "https://weather.gc.ca/rss/marine/14300_e.xml"
+        },
+        {
+            "name": "West Coast Haida Gwaii - southern half",
+            "URL": "https://weather.gc.ca/rss/marine/15200_e.xml"
+        },
+        {
+            "name": "West Coast Vancouver Island North",
+            "URL": "https://weather.gc.ca/rss/marine/15300_e.xml"
+        },
+        {
+            "name": "West Coast Vancouver Island South",
+            "URL": "https://weather.gc.ca/rss/marine/16200_e.xml"
+        },
+        {
+            "name": "Queen Charlotte Sound - northern half",
+            "URL": "https://weather.gc.ca/rss/marine/12300_e.xml"
+        },
+        {
+            "name": "Queen Charlotte Sound - southern half",
+            "URL": "https://weather.gc.ca/rss/marine/12300_e.xml"
+        }
+    ]
+}
