@@ -1,6 +1,4 @@
 var schedule = require('node-schedule');
-var _ = require('lodash');
-time = new Date();
 var fetchWarningFile = require('./app.js');
 var eraser = require('./eraser')
 var mailsenderFile = require('./mailsender')

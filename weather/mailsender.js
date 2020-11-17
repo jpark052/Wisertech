@@ -3,7 +3,6 @@ var clientList = require('./clientList.json')
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var fs = require('fs')
-var listMatchFile
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -28,7 +27,6 @@ function isItMatch(list, word) {
 // assume waring info has been updated
 // now iterate each warnings
 
-
 module.exports = {
     sendMail: function () {
         clientList.forEach(client => {
@@ -46,24 +44,26 @@ module.exports = {
 
                         if (!isDuplicated) {
 
+                            // compare if the client's severity preference matches the warning's severity
                             if (isItMatch(client.severity, warning.severity)) {
                                 console.log(`sent email to ${client.name} about ${warning.title}`)
 
-                                // var mailOptions = {
-                                //     from: 'jae.wisertech@gmail.com',    // or use company mail address
-                                //     to: client.email,
-                                //     subject: 'Warning Alert',
-                                //     text: `${warning.title}\n${warning.issued}`
-                                // };
+                                var mailOptions = {
+                                    from: 'jae.wisertech@gmail.com',    // or use company mail address
+                                    to: client.email,
+                                    subject: 'Warning Alert',
+                                    text: `${warning.title}\n${warning.issued}`
+                                };
 
-                                // transporter.sendMail(mailOptions, function (error, info) {
-                                //     if (error) {
-                                //         console.log(error);
-                                //     } else {
-                                //         console.log('Email sent: ' + info.response);
-                                //     }
-                                // });
+                                transporter.sendMail(mailOptions, function (error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
+                                    }
+                                });
 
+                                // Adding the warning to client file, so we don't send it again
                                 let addWarning = {
                                     "title": warning.title,
                                     "issued": warning.issued,
@@ -76,6 +76,7 @@ module.exports = {
                 }
             })
         })
+        // Updating the clientFile so it reflects the warnings that clients have received so far
         let newList = JSON.stringify(clientList, null, "\t")
 
         fs.writeFile('./clientList.json', newList, (err) => {

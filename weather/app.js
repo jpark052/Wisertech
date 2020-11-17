@@ -33,7 +33,7 @@ function getWarnings(callback) {
                     var entryList = result.feed.entry
                     entryList.forEach(element => {
 
-                        if (element.category[0].$.term == "Marine Warnings and Watches") {
+                        if (element.category[0].$.term == "Marine Warnings and Watches") {  // grabbing the warning information
                             let newWarning = {}
                             newWarning.title = element.title[0]
                             newWarning.issued = element.summary[0]._
